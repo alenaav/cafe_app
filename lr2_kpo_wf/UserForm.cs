@@ -62,5 +62,23 @@ namespace lr2_kpo_wf
             var historyForm = new PointsHistoryForm(currentUser); // currentUser — переданный в UserForm пользователь
             historyForm.ShowDialog();
         }
+
+        private void историяЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ordersForm = new OrdersHistoryForm(currentUser); // currentUser — переданный в UserForm пользователь
+            ordersForm.ShowDialog();
+        }
+
+        private void списокКафеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cafeForm = new CafeForm();
+            cafeForm.ShowDialog();
+        }
+
+        private void профильToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var profileForm = new ProfileForm(currentUser);
+            profileForm.ShowDialog();
+        }
     }
 }

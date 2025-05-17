@@ -24,6 +24,13 @@ namespace lr2_kpo_wf.Model
         public DbSet<LoyaltyPoints> LoyaltyPoints { get; set; }
         public DbSet<PointsHistory> PointsHistories { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Cafe> Cafes { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder

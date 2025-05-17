@@ -37,6 +37,8 @@ namespace lr2_kpo_wf
             menuStrip1 = new MenuStrip();
             историяЗаказовToolStripMenuItem = new ToolStripMenuItem();
             историяКартыToolStripMenuItem = new ToolStripMenuItem();
+            списокКафеToolStripMenuItem = new ToolStripMenuItem();
+            профильToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -121,7 +123,7 @@ namespace lr2_kpo_wf
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { историяЗаказовToolStripMenuItem, историяКартыToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { историяЗаказовToolStripMenuItem, историяКартыToolStripMenuItem, списокКафеToolStripMenuItem, профильToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(557, 28);
@@ -133,6 +135,7 @@ namespace lr2_kpo_wf
             историяЗаказовToolStripMenuItem.Name = "историяЗаказовToolStripMenuItem";
             историяЗаказовToolStripMenuItem.Size = new Size(140, 24);
             историяЗаказовToolStripMenuItem.Text = "История заказов";
+            историяЗаказовToolStripMenuItem.Click += историяЗаказовToolStripMenuItem_Click;
             // 
             // историяКартыToolStripMenuItem
             // 
@@ -140,6 +143,20 @@ namespace lr2_kpo_wf
             историяКартыToolStripMenuItem.Size = new Size(127, 24);
             историяКартыToolStripMenuItem.Text = "История карты";
             историяКартыToolStripMenuItem.Click += историяКартыToolStripMenuItem_Click;
+            // 
+            // списокКафеToolStripMenuItem
+            // 
+            списокКафеToolStripMenuItem.Name = "списокКафеToolStripMenuItem";
+            списокКафеToolStripMenuItem.Size = new Size(110, 24);
+            списокКафеToolStripMenuItem.Text = "Список кафе";
+            списокКафеToolStripMenuItem.Click += списокКафеToolStripMenuItem_Click;
+            // 
+            // профильToolStripMenuItem
+            // 
+            профильToolStripMenuItem.Name = "профильToolStripMenuItem";
+            профильToolStripMenuItem.Size = new Size(87, 24);
+            профильToolStripMenuItem.Text = "Профиль";
+            профильToolStripMenuItem.Click += профильToolStripMenuItem_Click;
             // 
             // UserForm
             // 
@@ -170,5 +187,7 @@ namespace lr2_kpo_wf
         private MenuStrip menuStrip1;
         private ToolStripMenuItem историяЗаказовToolStripMenuItem;
         private ToolStripMenuItem историяКартыToolStripMenuItem;
+        private ToolStripMenuItem списокКафеToolStripMenuItem;
+        private ToolStripMenuItem профильToolStripMenuItem;
     }
 }
