@@ -22,7 +22,7 @@ namespace lr2_kpo_wf.Model
         public DbSet<User> Users { get; set; }
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
         public DbSet<LoyaltyPoints> LoyaltyPoints { get; set; }
-
+        public DbSet<PointsHistory> PointsHistories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

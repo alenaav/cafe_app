@@ -34,13 +34,17 @@ namespace lr2_kpo_wf
             txtIsActive = new TextBox();
             txtCreatedAt = new TextBox();
             txtCurrentBalance = new TextBox();
+            menuStrip1 = new MenuStrip();
+            историяЗаказовToolStripMenuItem = new ToolStripMenuItem();
+            историяКартыToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblTitle.Location = new Point(20, 20);
+            lblTitle.Location = new Point(20, 28);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(397, 32);
             lblTitle.TabIndex = 0;
@@ -114,6 +118,29 @@ namespace lr2_kpo_wf
             txtCurrentBalance.Size = new Size(200, 27);
             txtCurrentBalance.TabIndex = 8;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { историяЗаказовToolStripMenuItem, историяКартыToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(557, 28);
+            menuStrip1.TabIndex = 9;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // историяЗаказовToolStripMenuItem
+            // 
+            историяЗаказовToolStripMenuItem.Name = "историяЗаказовToolStripMenuItem";
+            историяЗаказовToolStripMenuItem.Size = new Size(140, 24);
+            историяЗаказовToolStripMenuItem.Text = "История заказов";
+            // 
+            // историяКартыToolStripMenuItem
+            // 
+            историяКартыToolStripMenuItem.Name = "историяКартыToolStripMenuItem";
+            историяКартыToolStripMenuItem.Size = new Size(127, 24);
+            историяКартыToolStripMenuItem.Text = "История карты";
+            историяКартыToolStripMenuItem.Click += историяКартыToolStripMenuItem_Click;
+            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -128,12 +155,20 @@ namespace lr2_kpo_wf
             Controls.Add(txtCreatedAt);
             Controls.Add(lblCurrentBalance);
             Controls.Add(txtCurrentBalance);
+            Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = menuStrip1;
             Name = "UserForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Личный кабинет";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem историяЗаказовToolStripMenuItem;
+        private ToolStripMenuItem историяКартыToolStripMenuItem;
     }
 }

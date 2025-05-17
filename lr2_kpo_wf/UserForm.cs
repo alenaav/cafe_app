@@ -57,5 +57,10 @@ namespace lr2_kpo_wf
             }
         }
 
+        private void историяКартыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var historyForm = new PointsHistoryForm(currentUser); // currentUser — переданный в UserForm пользователь
+            historyForm.ShowDialog();
+        }
     }
 }
