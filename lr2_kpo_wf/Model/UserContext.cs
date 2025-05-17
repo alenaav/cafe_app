@@ -20,6 +20,9 @@ namespace lr2_kpo_wf.Model
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
+        public DbSet<LoyaltyPoints> LoyaltyPoints { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,6 +43,11 @@ namespace lr2_kpo_wf.Model
                 entity.HasIndex(u => u.Phone).IsUnique();
                 entity.Property(u => u.CreatedAt)
                       .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            });
+
+            modelBuilder.Entity<LoyaltyCard>(entity =>
+            {
+                entity.HasIndex(c => c.UserId).IsUnique();
             });
         }
     }

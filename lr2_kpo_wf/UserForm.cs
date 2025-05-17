@@ -7,20 +7,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 using lr2_kpo_wf.Model;
 
 namespace lr2_kpo_wf
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        private readonly User currentUser;
+
+        public UserForm(User user)
         {
             InitializeComponent();
+            currentUser = user;
+            LoadLoyaltyCard();
         }
 
-        public UserForm(User currentUser)
+        private void LoadLoyaltyCard()
         {
-            InitializeComponent();
+            using (var db = new UserContext())
+            {
+                var card = db.LoyaltyCards
+                             .FirstOrDefault(c => c.UserId == currentUser.Id);
+
+                if (card != null)
+                {
+                    txtCardNumber.Text = card.CardNumber;
+                    txtIsActive.Text = card.IsActive ? "Да" : "Нет";
+                    txtCreatedAt.Text = card.CreatedAt.ToString("g");
+
+                    var points = db.LoyaltyPoints
+                                   .FirstOrDefault(p => p.CardId == card.Id);
+
+                    if (points != null)
+                    {
+                        txtCurrentBalance.Text = points.CurrentBalance.ToString();
+                    }
+                    else
+                    {
+                        txtCurrentBalance.Text = "0";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("У вас пока нет карты лояльности.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
+
     }
 }
