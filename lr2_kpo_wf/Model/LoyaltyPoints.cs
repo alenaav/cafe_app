@@ -11,11 +11,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace lr2_kpo_wf.Model
 {
     [Table("loyalty_points")]
-    public class LoyaltyPoints
+    public class LoyaltyPoint
     {
         [Key]
         [Column("card_id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CardId { get; set; }
 
         [Required]
@@ -27,4 +26,5 @@ namespace lr2_kpo_wf.Model
         public DateTime LastUpdate { get; set; }
     }
 }
+
 

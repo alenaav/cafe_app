@@ -9,19 +9,16 @@ namespace lr2_kpo_wf.Model
 {
     internal class UserContext : DbContext
     {
-        private const string DbFile = @"C:\Users\User\Documents\al_cafe.db";
+        private const string DbFile = @"C:\Users\Yulia\cards.db";
 
         public UserContext()
         {
-            // При первом обращении создаём БД (если нужно)
             Database.EnsureCreated();
-            // Или, если вы хотите использовать миграции:
-            // Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
-        public DbSet<LoyaltyPoints> LoyaltyPoints { get; set; }
+        public DbSet<LoyaltyPoint> LoyaltyPoints { get; set; }
         public DbSet<PointsHistory> PointsHistories { get; set; }
 
         public DbSet<Order> Orders { get; set; }

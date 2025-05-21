@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="lr2_kpo_wf.Model.Cafe">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Model\Cafe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.LoyaltyCard">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAECAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\LoyaltyCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.Order">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAQCAAAAAAAAAgAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.OrderItem">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\OrderItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.PointsHistory">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAgAIAA=</HashCode>
+      <FileName>Model\PointsHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.Product">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAQAAAIAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.ProductCategory">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ProductCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.User">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAACAAAIAAACAAAAAAAAAAAAAAAAAQKAAAAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lr2_kpo_wf.Model.UserContext">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAQEAAAAAAhAAAAIFEAAAAAAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Model\UserContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

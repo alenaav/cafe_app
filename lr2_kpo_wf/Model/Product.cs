@@ -30,5 +30,6 @@ namespace lr2_kpo_wf.Model
 
         // Навигационное свойство
         public ProductCategory Category { get; set; }
+
     }
 }

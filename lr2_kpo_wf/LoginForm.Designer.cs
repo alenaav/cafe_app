@@ -57,13 +57,6 @@
             labelEmail.TabIndex = 1;
             labelEmail.Text = "Email";
             // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(92, 45);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(338, 27);
-            txtEmail.TabIndex = 2;
-            // 
             // labelPassword
             // 
             labelPassword.AutoSize = true;
@@ -73,6 +66,33 @@
             labelPassword.TabIndex = 3;
             labelPassword.Text = "Пароль";
             // 
+            // labelFullName
+            // 
+            labelFullName.AutoSize = true;
+            labelFullName.Location = new Point(12, 120);
+            labelFullName.Name = "labelFullName";
+            labelFullName.Size = new Size(95, 20);
+            labelFullName.TabIndex = 5;
+            labelFullName.Text = "Полное имя";
+            labelFullName.Visible = false;
+            // 
+            // labelPhone
+            // 
+            labelPhone.AutoSize = true;
+            labelPhone.Location = new Point(12, 156);
+            labelPhone.Name = "labelPhone";
+            labelPhone.Size = new Size(69, 20);
+            labelPhone.TabIndex = 7;
+            labelPhone.Text = "Телефон";
+            labelPhone.Visible = false;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(92, 45);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(338, 27);
+            txtEmail.TabIndex = 2;
+            // 
             // txtPassword
             // 
             txtPassword.Location = new Point(92, 81);
@@ -81,16 +101,6 @@
             txtPassword.Size = new Size(338, 27);
             txtPassword.TabIndex = 4;
             // 
-            // labelFullName
-            // 
-            labelFullName.AutoSize = true;
-            labelFullName.Location = new Point(12, 120);
-            labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(83, 20);
-            labelFullName.TabIndex = 5;
-            labelFullName.Text = "Полное имя";
-            labelFullName.Visible = false;
-            // 
             // txtFullName
             // 
             txtFullName.Location = new Point(101, 117);
@@ -98,16 +108,6 @@
             txtFullName.Size = new Size(329, 27);
             txtFullName.TabIndex = 6;
             txtFullName.Visible = false;
-            // 
-            // labelPhone
-            // 
-            labelPhone.AutoSize = true;
-            labelPhone.Location = new Point(12, 156);
-            labelPhone.Name = "labelPhone";
-            labelPhone.Size = new Size(57, 20);
-            labelPhone.TabIndex = 7;
-            labelPhone.Text = "Телефон";
-            labelPhone.Visible = false;
             // 
             // txtPhone
             // 
@@ -158,6 +158,7 @@
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Авторизация";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

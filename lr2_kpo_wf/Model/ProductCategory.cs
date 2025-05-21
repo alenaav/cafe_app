@@ -19,5 +19,7 @@ namespace lr2_kpo_wf.Model
         [Required]
         [Column("name")]
         public string Name { get; set; }
+
+        public List<Product> Products { get; set; } = new();
     }
 }

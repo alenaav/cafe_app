@@ -84,5 +84,10 @@ namespace lr2_kpo_wf
                 Close();
             }
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
