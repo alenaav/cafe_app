@@ -29,7 +29,7 @@ namespace lr2_kpo_wf
                 {
                     // Попытка входа по email и паролю
                     currentUser = User.Login(loginForm.UserName, loginForm.Password);
-                    if (currentUser.Email == "ivan.ivanov@mail.ru")
+                    if (currentUser.Email == "cafe@mail.ru")
                     {
                         Application.Run(new AdminForm());
                         return;

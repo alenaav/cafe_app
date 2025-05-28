@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using lr2_kpo_wf.Model;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +15,8 @@ namespace lr2_kpo_wf
         private LoyaltyCard card;
         private User user;
         private decimal totalAmount = 0;
+        private int availablePoints = 0;
+        private int usedPoints = 0;
         private List<(Product product, int quantity)> orderItems = new();
 
         public OrderMakeForm(string cardNumber)
@@ -34,7 +33,6 @@ namespace lr2_kpo_wf
             card = db.LoyaltyCards.First(c => c.CardNumber == cardNumber);
             user = db.Users.First(u => u.Id == card.UserId);
 
-            // Загрузить категории и продукты
             var categories = db.ProductCategories.Include(c => c.Products).ToList();
             foreach (var category in categories)
             {
@@ -47,10 +45,13 @@ namespace lr2_kpo_wf
                 treeViewMenu.Nodes.Add(node);
             }
 
-            // Загрузить кафе
             comboBoxCafes.DataSource = db.Cafes.ToList();
             comboBoxCafes.DisplayMember = "Name";
             comboBoxCafes.ValueMember = "Id";
+
+            var dbPoints = db.LoyaltyPoints.FirstOrDefault(p => p.CardId == card.Id);
+            availablePoints = dbPoints?.CurrentBalance ?? 0;
+            lblAvailablePoints.Text = $"Доступно баллов: {availablePoints}";
         }
 
         private void btnAddToOrder_Click(object sender, EventArgs e)
@@ -66,9 +67,27 @@ namespace lr2_kpo_wf
 
             orderItems.Add((product, quantity));
             totalAmount += (decimal)product.CurrentPrice * quantity;
-            lblTotal.Text = $"Итого: {totalAmount:C}";
 
             dgvOrder.Rows.Add(product.Name, quantity, product.CurrentPrice, quantity * product.CurrentPrice);
+
+            lblTotal.Text = $"Итого: {totalAmount:C}";
+            UpdateFinalTotal();
+        }
+
+        private void txtPointsToUse_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtPointsToUse.Text, out usedPoints))
+                usedPoints = 0;
+
+            usedPoints = Math.Min(usedPoints, availablePoints);
+            UpdateFinalTotal();
+        }
+
+        private void UpdateFinalTotal()
+        {
+            decimal finalAmount = totalAmount - usedPoints;
+            if (finalAmount < 0) finalAmount = 0;
+            lblFinalTotal.Text = $"Итого с учетом баллов: {finalAmount:C}";
         }
 
         private void btnConfirmOrder_Click(object sender, EventArgs e)
@@ -80,7 +99,6 @@ namespace lr2_kpo_wf
 
             try
             {
-                // Создать заказ
                 var order = new Order
                 {
                     UserId = user.Id,
@@ -92,7 +110,6 @@ namespace lr2_kpo_wf
                 db.Orders.Add(order);
                 db.SaveChanges();
 
-                // Добавить товары
                 foreach (var (product, quantity) in orderItems)
                 {
                     db.OrderItems.Add(new OrderItem
@@ -104,14 +121,33 @@ namespace lr2_kpo_wf
                     });
                 }
 
-                db.SaveChanges();
+                // Списываем баллы
+                if (usedPoints > 0)
+                {
+                    var lp = db.LoyaltyPoints.FirstOrDefault(p => p.CardId == card.Id);
+                    if (lp != null)
+                    {
+                        lp.CurrentBalance -= usedPoints;
+                        lp.LastUpdate = DateTime.Now;
+                    }
 
-                // Начислить баллы (10%)
-                int points = (int)(totalAmount * 0.10m);
+                    db.PointsHistories.Add(new PointsHistory
+                    {
+                        CardId = card.Id,
+                        PointsChange = -usedPoints,
+                        OrderId = order.Id,
+                        ChangeDate = DateTime.Now
+                    });
+
+                    order.TotalAmount -= usedPoints;
+                }
+
+                // Начисление новых баллов
+                int earnedPoints = (int)((decimal)order.TotalAmount * 0.10m);
                 var loyaltyPoints = db.LoyaltyPoints.FirstOrDefault(p => p.CardId == card.Id);
                 if (loyaltyPoints != null)
                 {
-                    loyaltyPoints.CurrentBalance += points;
+                    loyaltyPoints.CurrentBalance += earnedPoints;
                     loyaltyPoints.LastUpdate = DateTime.Now;
                 }
                 else
@@ -119,16 +155,15 @@ namespace lr2_kpo_wf
                     db.LoyaltyPoints.Add(new LoyaltyPoint
                     {
                         CardId = card.Id,
-                        CurrentBalance = points,
+                        CurrentBalance = earnedPoints,
                         LastUpdate = DateTime.Now
                     });
                 }
 
-                // История баллов
                 db.PointsHistories.Add(new PointsHistory
                 {
                     CardId = card.Id,
-                    PointsChange = points,
+                    PointsChange = earnedPoints,
                     OrderId = order.Id,
                     ChangeDate = DateTime.Now
                 });
@@ -146,5 +181,4 @@ namespace lr2_kpo_wf
             }
         }
     }
-
 }

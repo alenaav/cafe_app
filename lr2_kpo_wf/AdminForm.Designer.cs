@@ -7,6 +7,7 @@
         private Button btnSaveChanges;
         private Button btnAddUser;
         private Label lblTitle;
+        private System.Windows.Forms.Button btnManageCafes;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,6 +22,7 @@
             btnAddUser = new Button();
             lblTitle = new Label();
             btnMakeOrder = new Button();
+            btnManageCafes = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             SuspendLayout();
             // 
@@ -48,9 +50,9 @@
             // 
             // btnAddUser
             // 
-            btnAddUser.Location = new Point(160, 400);
+            btnAddUser.Location = new Point(146, 401);
             btnAddUser.Name = "btnAddUser";
-            btnAddUser.Size = new Size(160, 30);
+            btnAddUser.Size = new Size(132, 30);
             btnAddUser.TabIndex = 3;
             btnAddUser.Text = "Добавить пользователя";
             btnAddUser.Click += btnAddUser_Click;
@@ -67,13 +69,23 @@
             // 
             // btnMakeOrder
             // 
-            btnMakeOrder.Location = new Point(590, 401);
+            btnMakeOrder.Location = new Point(618, 400);
             btnMakeOrder.Name = "btnMakeOrder";
             btnMakeOrder.Size = new Size(162, 29);
             btnMakeOrder.TabIndex = 4;
             btnMakeOrder.Text = "Оформить заказ";
             btnMakeOrder.UseVisualStyleBackColor = true;
             btnMakeOrder.Click += btnMakeOrder_Click;
+            // 
+            // btnManageCafes
+            // 
+            btnManageCafes.Location = new Point(450, 400);
+            btnManageCafes.Name = "btnManageCafes";
+            btnManageCafes.Size = new Size(162, 29);
+            btnManageCafes.TabIndex = 5;
+            btnManageCafes.Text = "Управление кафе";
+            btnManageCafes.UseVisualStyleBackColor = true;
+            btnManageCafes.Click += btnManageCafes_Click;
             // 
             // AdminForm
             // 
@@ -83,6 +95,7 @@
             Controls.Add(dgvUsers);
             Controls.Add(btnSaveChanges);
             Controls.Add(btnAddUser);
+            Controls.Add(btnManageCafes);
             Name = "AdminForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Админ-панель";

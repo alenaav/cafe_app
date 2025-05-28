@@ -7,6 +7,18 @@ namespace lr2_kpo_wf
 {
     public partial class AdminForm : Form
     {
+        private class UserWithCard
+        {
+            public int Id { get; set; }
+            public string Имя { get; set; }
+            public string Почта { get; set; }
+            public string Пароль { get; set; }
+            public string Телефон { get; set; }
+            public string НомерКарты { get; set; }
+            public bool АктивнаЛиКарта { get; set; }
+            public int БонусныеБаллы { get; set; }
+        }
+
         public AdminForm()
         {
             InitializeComponent();
@@ -17,15 +29,30 @@ namespace lr2_kpo_wf
         {
             using (var db = new UserContext())
             {
-                var users = db.Users.ToList();
-                dgvUsers.DataSource = new BindingSource { DataSource = users };
+                var usersWithCards = (from u in db.Users
+                                      join c in db.Set<LoyaltyCard>() on u.Id equals c.UserId into cardGroup
+                                      from c in cardGroup.DefaultIfEmpty()
+                                      join p in db.Set<LoyaltyPoint>() on c.Id equals p.CardId into pointsGroup
+                                      from p in pointsGroup.DefaultIfEmpty()
+                                      select new UserWithCard
+                                      {
+                                          Id = u.Id,
+                                          Имя = u.FullName,
+                                          Почта = u.Email,
+                                          Пароль = u.PasswordHash,
+                                          Телефон = u.Phone,
+                                          НомерКарты = c != null ? c.CardNumber : "",
+                                          АктивнаЛиКарта = c != null && c.IsActive,
+                                          БонусныеБаллы = p != null ? p.CurrentBalance : 0
+                                      }).ToList();
+
+                dgvUsers.DataSource = new BindingSource { DataSource = usersWithCards };
             }
 
-            // Убедимся, что нужные столбцы можно редактировать:
-            dgvUsers.Columns["Id"].ReadOnly = true;
-            dgvUsers.Columns["CreatedAt"].ReadOnly = true;
+            dgvUsers.Columns["НомерКарты"].ReadOnly = true;
+            dgvUsers.Columns["БонусныеБаллы"].ReadOnly = true;
+            dgvUsers.Columns["Id"].Visible = false;
         }
-
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
@@ -37,13 +64,18 @@ namespace lr2_kpo_wf
 
                     int userId = Convert.ToInt32(row.Cells["Id"].Value);
                     var user = db.Users.FirstOrDefault(u => u.Id == userId);
+                    if (user == null) continue;
 
-                    if (user != null)
+                    user.FullName = row.Cells["Имя"].Value?.ToString();
+                    user.Email = row.Cells["Почта"].Value?.ToString();
+                    user.PasswordHash = row.Cells["Пароль"].Value?.ToString();
+                    user.Phone = row.Cells["Телефон"].Value?.ToString();
+
+                    var card = db.Set<LoyaltyCard>().FirstOrDefault(c => c.UserId == userId);
+                    if (card != null)
                     {
-                        user.Email = row.Cells["Email"].Value?.ToString();
-                        user.FullName = row.Cells["FullName"].Value?.ToString();
-                        user.Phone = row.Cells["Phone"].Value?.ToString();
-                        user.PasswordHash = row.Cells["PasswordHash"].Value?.ToString();
+                        bool newStatus = Convert.ToBoolean(row.Cells["АктивнаЛиКарта"].Value);
+                        card.IsActive = newStatus;
                     }
                 }
 
@@ -77,6 +109,12 @@ namespace lr2_kpo_wf
                 var form = new OrderMakeForm(prompt.CardNumber);
                 form.ShowDialog();
             }
+        }
+
+        private void btnManageCafes_Click(object sender, EventArgs e)
+        {
+            var cafeForm = new CafeAdminForm();
+            cafeForm.ShowDialog();
         }
     }
 }
