@@ -7,10 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System;
-using System.Linq;
-using System.Windows.Forms;
 using lr2_kpo_wf.Model;
 
 namespace lr2_kpo_wf
@@ -43,14 +39,25 @@ namespace lr2_kpo_wf
                                 .OrderByDescending(h => h.ChangeDate)
                                 .Select(h => new
                                 {
-                                    h.PointsChange,
-                                    h.ChangeDate,
-                                    h.OrderId
+                                    Баллы = h.PointsChange,
+                                    Дата = h.ChangeDate
                                 })
                                 .ToList();
 
                 dgvPointsHistory.DataSource = history;
+
+                // Дополнительно — чтобы заголовки в DataGridView гарантированно были на русском
+                dgvPointsHistory.Columns[0].HeaderText = "Изменение баллов";
+                dgvPointsHistory.Columns[1].HeaderText = "Дата изменения";
+
+                // Если авторазмер колонок нужен
+                dgvPointsHistory.AutoResizeColumns();
             }
+        }
+
+        private void PointsHistoryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

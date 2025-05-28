@@ -23,27 +23,29 @@ namespace lr2_kpo_wf
         {
             dgvPointsHistory = new DataGridView();
             lblTitle = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvPointsHistory).BeginInit();
             SuspendLayout();
             // 
             // dgvPointsHistory
             // 
+            dgvPointsHistory.AllowUserToAddRows = false;
+            dgvPointsHistory.AllowUserToDeleteRows = false;
             dgvPointsHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPointsHistory.Location = new Point(20, 60);
             dgvPointsHistory.Name = "dgvPointsHistory";
-            dgvPointsHistory.RowHeadersWidth = 51;
-            dgvPointsHistory.RowTemplate.Height = 29;
-            dgvPointsHistory.Size = new Size(540, 300);
             dgvPointsHistory.ReadOnly = true;
-            dgvPointsHistory.AllowUserToAddRows = false;
-            dgvPointsHistory.AllowUserToDeleteRows = false;
+            dgvPointsHistory.RowHeadersWidth = 51;
+            dgvPointsHistory.Size = new Size(540, 300);
+            dgvPointsHistory.TabIndex = 0;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, FontStyle.Bold);
             lblTitle.Location = new Point(20, 20);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(250, 25);
+            lblTitle.Size = new Size(377, 32);
+            lblTitle.TabIndex = 1;
             lblTitle.Text = "История баллов пользователя";
             // 
             // PointsHistoryForm
@@ -57,6 +59,8 @@ namespace lr2_kpo_wf
             Name = "PointsHistoryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "История баллов";
+            Load += PointsHistoryForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvPointsHistory).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

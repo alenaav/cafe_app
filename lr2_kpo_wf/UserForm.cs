@@ -34,21 +34,20 @@ namespace lr2_kpo_wf
 
                 if (card != null)
                 {
-                    txtCardNumber.Text = card.CardNumber;
-                    txtIsActive.Text = card.IsActive ? "Да" : "Нет";
-                    txtCreatedAt.Text = card.CreatedAt.ToString("g");
+                    lblCardNumber.Text = $"Номер карты: {card.CardNumber}";
+                    lblIsActive.Text = $"Активна: {(card.IsActive ? "Да" : "Нет")}";
+                    lblCreatedAt.Text = $"Дата регистрации: {card.CreatedAt.ToString("dd.MM.yyyy")}";
                     lblLevel.Text = $"Уровень: {card.Level}";
 
-                    var points = db.LoyaltyPoints
-                                   .FirstOrDefault(p => p.CardId == card.Id);
+                    var points = db.LoyaltyPoints.FirstOrDefault(p => p.CardId == card.Id);
 
                     if (points != null)
                     {
-                        txtCurrentBalance.Text = points.CurrentBalance.ToString();
+                        lblCurrentBalance.Text = $"Баланс баллов: {points.CurrentBalance}";
                     }
                     else
                     {
-                        txtCurrentBalance.Text = "0";
+                        lblCurrentBalance.Text = "Баланс баллов: 0";
                     }
                 }
                 else
