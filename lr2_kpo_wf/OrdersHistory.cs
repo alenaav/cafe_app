@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Microsoft.EntityFrameworkCore; // добавьте если отсутствует
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -28,26 +28,60 @@ namespace lr2_kpo_wf
 
         private void LoadOrderHistory()
         {
+            treeViewOrders.Nodes.Clear();
+
             using (var db = new UserContext())
             {
-                var orders = from o in db.Orders
-                             where o.UserId == currentUser.Id
-                             join item in db.OrderItems on o.Id equals item.OrderId
-                             join product in db.Products on item.ProductId equals product.Id
-                             join category in db.ProductCategories on product.CategoryId equals category.Id
-                             select new
-                             {
-                                 OrderId = o.Id,
-                                 OrderDate = o.OrderDate,
-                                 ProductName = product.Name,
-                                 Category = category.Name,
-                                 Quantity = item.Quantity,
-                                 PriceAtOrder = item.PriceAtOrder,
-                                 Total = item.Quantity * item.PriceAtOrder
-                             };
+                // Подгружаем все заказы пользователя с нужными связями вручную
+                var orders = (from o in db.Orders
+                              where o.UserId == currentUser.Id
+                              join c in db.Cafes on o.CafeId equals c.Id
+                              join oi in db.OrderItems on o.Id equals oi.OrderId
+                              join p in db.Products on oi.ProductId equals p.Id
+                              group new { o, c, oi, p } by new { o.Id, o.OrderDate, o.TotalAmount, c.Name } into orderGroup
+                              select new
+                              {
+                                  OrderId = orderGroup.Key.Id,
+                                  OrderDate = orderGroup.Key.OrderDate,
+                                  CafeName = orderGroup.Key.Name,
+                                  TotalAmount = orderGroup.Key.TotalAmount,
+                                  Items = orderGroup.Select(g => new
+                                  {
+                                      ProductName = g.p.Name,
+                                      g.oi.Quantity
+                                  }).ToList()
+                              }).OrderByDescending(o => o.OrderDate).ToList();
 
-                dgvOrders.DataSource = orders.ToList();
+                foreach (var order in orders)
+                {
+                    var orderNode = new TreeNode(order.OrderDate.ToString("dd.MM.yyyy HH:mm:ss"));
+                    var cafeNode = new TreeNode($"Кафе: {order.CafeName}");
+                    orderNode.Nodes.Add(cafeNode);
+
+                    var totalNode = new TreeNode($"Сумма заказа: {order.TotalAmount} руб.");
+                    cafeNode.Nodes.Add(totalNode);
+
+                    foreach (var item in order.Items)
+                    {
+                        var productNode = new TreeNode(item.ProductName);
+                        var quantityNode = new TreeNode($"Количество: {item.Quantity}");
+                        productNode.Nodes.Add(quantityNode);
+
+                        totalNode.Nodes.Add(productNode);
+                    }
+
+                    treeViewOrders.Nodes.Add(orderNode);
+                }
             }
+
+            treeViewOrders.ExpandAll();
+        }
+
+
+
+        private void OrdersHistoryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

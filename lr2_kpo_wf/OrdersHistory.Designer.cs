@@ -1,15 +1,10 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using Font = System.Drawing.Font;
-
-namespace lr2_kpo_wf
+﻿namespace lr2_kpo_wf
 {
     partial class OrdersHistoryForm
     {
         private System.ComponentModel.IContainer components = null;
-        private DataGridView dgvOrders;
         private Label lblTitle;
+        private TreeView treeViewOrders;
 
         protected override void Dispose(bool disposing)
         {
@@ -22,44 +17,42 @@ namespace lr2_kpo_wf
 
         private void InitializeComponent()
         {
-            dgvOrders = new DataGridView();
-            lblTitle = new Label();
-            SuspendLayout();
-            // 
-            // dgvOrders
-            // 
-            dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrders.Location = new Point(20, 60);
-            dgvOrders.Name = "dgvOrders";
-            dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.RowTemplate.Height = 29;
-            dgvOrders.Size = new Size(700, 350);
-            dgvOrders.ReadOnly = true;
-            dgvOrders.AllowUserToAddRows = false;
-            dgvOrders.AllowUserToDeleteRows = false;
+            this.lblTitle = new Label();
+            this.treeViewOrders = new TreeView();
+            this.SuspendLayout();
             // 
             // lblTitle
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitle.Location = new Point(20, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(170, 25);
-            lblTitle.Text = "История заказов";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            this.lblTitle.Location = new Point(20, 20);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new Size(214, 32);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "История заказов";
+            // 
+            // treeViewOrders
+            // 
+            this.treeViewOrders.Location = new Point(20, 70);
+            this.treeViewOrders.Name = "treeViewOrders";
+            this.treeViewOrders.Size = new Size(700, 350);
+            this.treeViewOrders.TabIndex = 1;
+            this.treeViewOrders.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             // 
             // OrdersHistoryForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(740, 440);
-            Controls.Add(dgvOrders);
-            Controls.Add(lblTitle);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "OrdersHistoryForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "История заказов";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(8F, 20F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(740, 450);
+            this.Controls.Add(this.treeViewOrders);
+            this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Name = "OrdersHistoryForm";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "История заказов";
+            this.Load += new EventHandler(this.OrdersHistoryForm_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
     }
 }
