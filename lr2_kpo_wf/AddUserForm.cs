@@ -46,7 +46,8 @@ namespace lr2_kpo_wf
                             UserId = newUser.Id,
                             CardNumber = cardNumber,
                             IsActive = true,
-                            CreatedAt = DateTime.Now
+                            CreatedAt = DateTime.Now,
+                            Level = "Бронзовый"
                         };
 
                         db.LoyaltyCards.Add(loyaltyCard);
@@ -67,5 +68,9 @@ namespace lr2_kpo_wf
             }
         }
 
+        private void AddUserForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

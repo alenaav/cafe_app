@@ -129,6 +129,7 @@
             Controls.Add(txtName);
             Name = "AddUserForm";
             Text = "AddUserForm";
+            Load += AddUserForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

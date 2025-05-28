@@ -34,5 +34,10 @@ namespace lr2_kpo_wf.Model
         [Required]
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
+
+        [Required]
+        [Column("level")]
+        public string Level { get; set; } = "Бронзовый";
+
     }
 }

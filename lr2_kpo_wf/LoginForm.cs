@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using lr2_kpo_wf.Model;
 
@@ -67,27 +63,71 @@ namespace lr2_kpo_wf
                     return;
                 }
 
+                // 1. Создание пользователя
                 var newUser = new User
                 {
                     Email = txtEmail.Text,
-                    PasswordHash = User.ComputeHash(txtPassword.Text),
+                    PasswordHash = User.ComputeHash(txtPassword.Text), // Метод уже есть
                     FullName = txtFullName.Text,
                     Phone = txtPhone.Text,
                     CreatedAt = DateTime.Now
                 };
 
                 db.Users.Add(newUser);
+                db.SaveChanges(); // Сохраняем, чтобы получить Id
+
+                // 2. Создание карты
+                var newCard = new LoyaltyCard
+                {
+                    UserId = newUser.Id,
+                    CardNumber = GenerateCardNumber(db),
+                    IsActive = true,
+                    CreatedAt = DateTime.Now,
+                    Level = "Бронзовый" // Начальный уровень
+                };
+
+                db.LoyaltyCards.Add(newCard);
+                db.SaveChanges(); // Чтобы получить CardId
+
+                // 3. Создание баллов
+                var points = new LoyaltyPoint
+                {
+                    CardId = newCard.Id,
+                    CurrentBalance = 0
+                };
+
+                db.LoyaltyPoints.Add(points);
                 db.SaveChanges();
 
-                MessageBox.Show("Регистрация прошла успешно!");
+                MessageBox.Show("Регистрация прошла успешно! Карта создана.");
                 DialogResult = DialogResult.OK;
                 Close();
             }
         }
 
+        /// <summary>
+        /// Генерация уникального 6-значного номера карты
+        /// </summary>
+        private string GenerateCardNumber(UserContext db)
+        {
+            var random = new Random();
+            string number;
+
+            do
+            {
+                number = random.Next(100000, 999999).ToString();
+            } while (db.LoyaltyCards.Any(c => c.CardNumber == number));
+
+            return number;
+        }
+
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            // по умолчанию поля регистрации скрыты
+            labelFullName.Visible = false;
+            txtFullName.Visible = false;
+            labelPhone.Visible = false;
+            txtPhone.Visible = false;
         }
     }
 }

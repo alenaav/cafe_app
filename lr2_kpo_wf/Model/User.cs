@@ -59,7 +59,7 @@ namespace lr2_kpo_wf.Model
             var hash = ComputeHash(password);
             using (var db = new UserContext())
             {
-                return db.Users.FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
+                return db.Users.FirstOrDefault(u => u.Email == email && u.PasswordHash == hash);
             }
         }
     }

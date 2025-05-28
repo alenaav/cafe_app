@@ -37,6 +37,7 @@ namespace lr2_kpo_wf
                     txtCardNumber.Text = card.CardNumber;
                     txtIsActive.Text = card.IsActive ? "Да" : "Нет";
                     txtCreatedAt.Text = card.CreatedAt.ToString("g");
+                    lblLevel.Text = $"Уровень: {card.Level}";
 
                     var points = db.LoyaltyPoints
                                    .FirstOrDefault(p => p.CardId == card.Id);
@@ -79,6 +80,16 @@ namespace lr2_kpo_wf
         {
             var profileForm = new ProfileForm(currentUser);
             profileForm.ShowDialog();
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLevel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -168,6 +168,23 @@ namespace lr2_kpo_wf
                     ChangeDate = DateTime.Now
                 });
 
+                // Обновить уровень карты
+                var totalSpent = db.Orders
+                    .Where(o => o.UserId == user.Id)
+                    .Sum(o => (decimal)o.TotalAmount);
+
+                if (totalSpent >= 30000 && card.Level != "gold")
+                {
+                    card.Level = "gold";
+                }
+                else if (totalSpent >= 10000 && card.Level != "silver" && card.Level != "gold")
+                {
+                    card.Level = "silver";
+                }
+                else if (totalSpent < 10000 && card.Level != "bronze")
+                {
+                    card.Level = "bronze";
+                }
                 db.SaveChanges();
                 transaction.Commit();
 
@@ -179,6 +196,11 @@ namespace lr2_kpo_wf
                 transaction.Rollback();
                 MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OrderMakeForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -25,103 +25,172 @@
 
         private void InitializeComponent()
         {
-            this.treeViewMenu = new System.Windows.Forms.TreeView();
-            this.numericQuantity = new System.Windows.Forms.NumericUpDown();
-            this.btnAddToOrder = new System.Windows.Forms.Button();
-            this.dgvOrder = new System.Windows.Forms.DataGridView();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.comboBoxCafes = new System.Windows.Forms.ComboBox();
-            this.btnConfirmOrder = new System.Windows.Forms.Button();
-            this.lblAvailablePoints = new System.Windows.Forms.Label();
-            this.txtPointsToUse = new System.Windows.Forms.TextBox();
-            this.lblFinalTotal = new System.Windows.Forms.Label();
-
-            ((System.ComponentModel.ISupportInitialize)(this.numericQuantity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
-            this.SuspendLayout();
-
+            treeViewMenu = new TreeView();
+            numericQuantity = new NumericUpDown();
+            btnAddToOrder = new Button();
+            dgvOrder = new DataGridView();
+            lblTotal = new Label();
+            comboBoxCafes = new ComboBox();
+            btnConfirmOrder = new Button();
+            lblAvailablePoints = new Label();
+            txtPointsToUse = new TextBox();
+            lblFinalTotal = new Label();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)numericQuantity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).BeginInit();
+            SuspendLayout();
+            // 
             // treeViewMenu
-            this.treeViewMenu.Location = new System.Drawing.Point(12, 12);
-            this.treeViewMenu.Size = new System.Drawing.Size(250, 300);
-            this.treeViewMenu.TabIndex = 0;
-
+            // 
+            treeViewMenu.Location = new Point(12, 12);
+            treeViewMenu.Name = "treeViewMenu";
+            treeViewMenu.Size = new Size(250, 300);
+            treeViewMenu.TabIndex = 0;
+            // 
             // numericQuantity
-            this.numericQuantity.Location = new System.Drawing.Point(280, 12);
-            this.numericQuantity.Minimum = 1;
-            this.numericQuantity.Value = 1;
-            this.numericQuantity.TabIndex = 1;
-
+            // 
+            numericQuantity.Location = new Point(280, 12);
+            numericQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericQuantity.Name = "numericQuantity";
+            numericQuantity.Size = new Size(120, 27);
+            numericQuantity.TabIndex = 1;
+            numericQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // btnAddToOrder
-            this.btnAddToOrder.Location = new System.Drawing.Point(280, 50);
-            this.btnAddToOrder.Size = new System.Drawing.Size(150, 30);
-            this.btnAddToOrder.Text = "Добавить в заказ";
-            this.btnAddToOrder.Click += new System.EventHandler(this.btnAddToOrder_Click);
-
+            // 
+            btnAddToOrder.Location = new Point(280, 50);
+            btnAddToOrder.Name = "btnAddToOrder";
+            btnAddToOrder.Size = new Size(150, 30);
+            btnAddToOrder.TabIndex = 2;
+            btnAddToOrder.Text = "Добавить в заказ";
+            btnAddToOrder.Click += btnAddToOrder_Click;
+            // 
             // dgvOrder
-            this.dgvOrder.Location = new System.Drawing.Point(12, 320);
-            this.dgvOrder.Size = new System.Drawing.Size(600, 200);
-            this.dgvOrder.Columns.Add("ProductName", "Продукт");
-            this.dgvOrder.Columns.Add("Quantity", "Количество");
-            this.dgvOrder.Columns.Add("UnitPrice", "Цена за ед.");
-            this.dgvOrder.Columns.Add("TotalPrice", "Сумма");
-            this.dgvOrder.ReadOnly = true;
-            this.dgvOrder.AllowUserToAddRows = false;
-            this.dgvOrder.RowHeadersVisible = false;
-
+            // 
+            dgvOrder.AllowUserToAddRows = false;
+            dgvOrder.ColumnHeadersHeight = 29;
+            dgvOrder.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dgvOrder.Location = new Point(12, 320);
+            dgvOrder.Name = "dgvOrder";
+            dgvOrder.ReadOnly = true;
+            dgvOrder.RowHeadersVisible = false;
+            dgvOrder.RowHeadersWidth = 51;
+            dgvOrder.Size = new Size(600, 200);
+            dgvOrder.TabIndex = 3;
+            // 
             // lblTotal
-            this.lblTotal.Location = new System.Drawing.Point(12, 530);
-            this.lblTotal.Size = new System.Drawing.Size(300, 30);
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblTotal.Text = "Итого: 0";
-
+            // 
+            lblTotal.Font = new Font("Segoe UI", 12F);
+            lblTotal.Location = new Point(12, 530);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(300, 30);
+            lblTotal.TabIndex = 4;
+            lblTotal.Text = "Итого: 0";
+            // 
             // comboBoxCafes
-            this.comboBoxCafes.Location = new System.Drawing.Point(320, 530);
-            this.comboBoxCafes.Size = new System.Drawing.Size(200, 30);
-
+            // 
+            comboBoxCafes.Location = new Point(320, 530);
+            comboBoxCafes.Name = "comboBoxCafes";
+            comboBoxCafes.Size = new Size(200, 28);
+            comboBoxCafes.TabIndex = 5;
+            // 
             // btnConfirmOrder
-            this.btnConfirmOrder.Location = new System.Drawing.Point(530, 530);
-            this.btnConfirmOrder.Size = new System.Drawing.Size(100, 30);
-            this.btnConfirmOrder.Text = "Оформить";
-            this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
-
+            // 
+            btnConfirmOrder.Location = new Point(530, 530);
+            btnConfirmOrder.Name = "btnConfirmOrder";
+            btnConfirmOrder.Size = new Size(100, 30);
+            btnConfirmOrder.TabIndex = 6;
+            btnConfirmOrder.Text = "Оформить";
+            btnConfirmOrder.Click += btnConfirmOrder_Click;
+            // 
             // lblAvailablePoints
-            this.lblAvailablePoints.Location = new System.Drawing.Point(12, 560);
-            this.lblAvailablePoints.Size = new System.Drawing.Size(250, 25);
-            this.lblAvailablePoints.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblAvailablePoints.Text = "Доступно баллов: 0";
-
+            // 
+            lblAvailablePoints.Font = new Font("Segoe UI", 10F);
+            lblAvailablePoints.Location = new Point(12, 560);
+            lblAvailablePoints.Name = "lblAvailablePoints";
+            lblAvailablePoints.Size = new Size(250, 25);
+            lblAvailablePoints.TabIndex = 7;
+            lblAvailablePoints.Text = "Доступно баллов: 0";
+            // 
             // txtPointsToUse
-            this.txtPointsToUse.Location = new System.Drawing.Point(280, 562);
-            this.txtPointsToUse.Size = new System.Drawing.Size(100, 25);
-            this.txtPointsToUse.TabIndex = 2;
-            this.txtPointsToUse.TextChanged += new System.EventHandler(this.txtPointsToUse_TextChanged);
-
+            // 
+            txtPointsToUse.Location = new Point(280, 562);
+            txtPointsToUse.Name = "txtPointsToUse";
+            txtPointsToUse.Size = new Size(100, 27);
+            txtPointsToUse.TabIndex = 2;
+            txtPointsToUse.TextChanged += txtPointsToUse_TextChanged;
+            // 
             // lblFinalTotal
-            this.lblFinalTotal.Location = new System.Drawing.Point(400, 562);
-            this.lblFinalTotal.Size = new System.Drawing.Size(250, 25);
-            this.lblFinalTotal.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblFinalTotal.Text = "Итого с учетом баллов: 0";
-
+            // 
+            lblFinalTotal.Font = new Font("Segoe UI", 10F);
+            lblFinalTotal.Location = new Point(400, 562);
+            lblFinalTotal.Name = "lblFinalTotal";
+            lblFinalTotal.Size = new Size(250, 25);
+            lblFinalTotal.TabIndex = 8;
+            lblFinalTotal.Text = "Итого с учетом баллов: 0";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Продукт";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Количество";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Цена за ед.";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Сумма";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
             // OrderMakeForm
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 600);
-            this.Controls.Add(this.treeViewMenu);
-            this.Controls.Add(this.numericQuantity);
-            this.Controls.Add(this.btnAddToOrder);
-            this.Controls.Add(this.dgvOrder);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.comboBoxCafes);
-            this.Controls.Add(this.btnConfirmOrder);
-            this.Controls.Add(this.lblAvailablePoints);
-            this.Controls.Add(this.txtPointsToUse);
-            this.Controls.Add(this.lblFinalTotal);
-            this.Text = "Оформление заказа";
-
-            ((System.ComponentModel.ISupportInitialize)(this.numericQuantity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(630, 600);
+            Controls.Add(treeViewMenu);
+            Controls.Add(numericQuantity);
+            Controls.Add(btnAddToOrder);
+            Controls.Add(dgvOrder);
+            Controls.Add(lblTotal);
+            Controls.Add(comboBoxCafes);
+            Controls.Add(btnConfirmOrder);
+            Controls.Add(lblAvailablePoints);
+            Controls.Add(txtPointsToUse);
+            Controls.Add(lblFinalTotal);
+            Name = "OrderMakeForm";
+            Text = "Оформление заказа";
+            Load += OrderMakeForm_Load;
+            ((System.ComponentModel.ISupportInitialize)numericQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

@@ -17,6 +17,7 @@ namespace lr2_kpo_wf
             public string НомерКарты { get; set; }
             public bool АктивнаЛиКарта { get; set; }
             public int БонусныеБаллы { get; set; }
+            public string УровеньКарты { get; set; }
         }
 
         public AdminForm()
@@ -43,7 +44,8 @@ namespace lr2_kpo_wf
                                           Телефон = u.Phone,
                                           НомерКарты = c != null ? c.CardNumber : "",
                                           АктивнаЛиКарта = c != null && c.IsActive,
-                                          БонусныеБаллы = p != null ? p.CurrentBalance : 0
+                                          БонусныеБаллы = p != null ? p.CurrentBalance : 0,
+                                          УровеньКарты = c != null ? c.Level : "" 
                                       }).ToList();
 
                 dgvUsers.DataSource = new BindingSource { DataSource = usersWithCards };
@@ -51,6 +53,7 @@ namespace lr2_kpo_wf
 
             dgvUsers.Columns["НомерКарты"].ReadOnly = true;
             dgvUsers.Columns["БонусныеБаллы"].ReadOnly = true;
+            dgvUsers.Columns["УровеньКарты"].ReadOnly = true; 
             dgvUsers.Columns["Id"].Visible = false;
         }
 
@@ -115,6 +118,11 @@ namespace lr2_kpo_wf
         {
             var cafeForm = new CafeAdminForm();
             cafeForm.ShowDialog();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

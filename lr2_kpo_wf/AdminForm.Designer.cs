@@ -99,6 +99,7 @@
             Name = "AdminForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Админ-панель";
+            Load += AdminForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();

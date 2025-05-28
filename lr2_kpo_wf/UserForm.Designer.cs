@@ -1,4 +1,5 @@
-﻿// UserForm.Designer.cs
+﻿using Microsoft.Extensions.Logging;
+
 namespace lr2_kpo_wf
 {
     partial class UserForm
@@ -9,6 +10,7 @@ namespace lr2_kpo_wf
         private Label lblIsActive;
         private Label lblCreatedAt;
         private Label lblCurrentBalance;
+        private Label lblLevel;
         private TextBox txtCardNumber;
         private TextBox txtIsActive;
         private TextBox txtCreatedAt;
@@ -34,6 +36,7 @@ namespace lr2_kpo_wf
             txtIsActive = new TextBox();
             txtCreatedAt = new TextBox();
             txtCurrentBalance = new TextBox();
+            lblLevel = new Label();
             menuStrip1 = new MenuStrip();
             историяЗаказовToolStripMenuItem = new ToolStripMenuItem();
             историяКартыToolStripMenuItem = new ToolStripMenuItem();
@@ -120,6 +123,18 @@ namespace lr2_kpo_wf
             txtCurrentBalance.Size = new Size(200, 27);
             txtCurrentBalance.TabIndex = 8;
             // 
+            // lblLevel
+            // 
+            // lblLevel
+            lblLevel = new Label();
+            lblLevel.AutoSize = true;
+            lblLevel.Location = new Point(20, 230);
+            lblLevel.Name = "lblLevel";
+            lblLevel.Size = new Size(65, 20);
+            lblLevel.TabIndex = 9;
+            lblLevel.Text = "Уровень:";
+            Controls.Add(lblLevel);
+            // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
@@ -172,12 +187,14 @@ namespace lr2_kpo_wf
             Controls.Add(txtCreatedAt);
             Controls.Add(lblCurrentBalance);
             Controls.Add(txtCurrentBalance);
+            Controls.Add(lblLevel);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             Name = "UserForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Личный кабинет";
+            Load += UserForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
