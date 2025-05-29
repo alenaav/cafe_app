@@ -40,6 +40,11 @@ namespace lr2_kpo_wf
                 dgvCafes.DataSource = cafes;
             }
         }
+
+        private void CafeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -35,9 +35,9 @@
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(310, 358);
+            btnNext.Location = new Point(164, 187);
             btnNext.Name = "btnNext";
-            btnNext.Size = new Size(94, 29);
+            btnNext.Size = new Size(185, 55);
             btnNext.TabIndex = 0;
             btnNext.Text = "Далее";
             btnNext.UseVisualStyleBackColor = true;
@@ -45,15 +45,15 @@
             // 
             // txtCardNumber
             // 
-            txtCardNumber.Location = new Point(243, 171);
+            txtCardNumber.Location = new Point(89, 141);
             txtCardNumber.Name = "txtCardNumber";
-            txtCardNumber.Size = new Size(261, 27);
+            txtCardNumber.Size = new Size(345, 27);
             txtCardNumber.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(260, 118);
+            label1.Location = new Point(151, 101);
             label1.Name = "label1";
             label1.Size = new Size(219, 20);
             label1.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(508, 323);
             Controls.Add(label1);
             Controls.Add(txtCardNumber);
             Controls.Add(btnNext);

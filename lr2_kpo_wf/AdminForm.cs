@@ -31,6 +31,7 @@ namespace lr2_kpo_wf
             using (var db = new UserContext())
             {
                 var usersWithCards = (from u in db.Users
+                                      where u.Email != "cafe@mail.ru" // Исключить cafe@mail.ru
                                       join c in db.Set<LoyaltyCard>() on u.Id equals c.UserId into cardGroup
                                       from c in cardGroup.DefaultIfEmpty()
                                       join p in db.Set<LoyaltyPoint>() on c.Id equals p.CardId into pointsGroup
@@ -45,7 +46,7 @@ namespace lr2_kpo_wf
                                           НомерКарты = c != null ? c.CardNumber : "",
                                           АктивнаЛиКарта = c != null && c.IsActive,
                                           БонусныеБаллы = p != null ? p.CurrentBalance : 0,
-                                          УровеньКарты = c != null ? c.Level : "" 
+                                          УровеньКарты = c != null ? c.Level : ""
                                       }).ToList();
 
                 dgvUsers.DataSource = new BindingSource { DataSource = usersWithCards };
@@ -53,9 +54,10 @@ namespace lr2_kpo_wf
 
             dgvUsers.Columns["НомерКарты"].ReadOnly = true;
             dgvUsers.Columns["БонусныеБаллы"].ReadOnly = true;
-            dgvUsers.Columns["УровеньКарты"].ReadOnly = true; 
+            dgvUsers.Columns["УровеньКарты"].ReadOnly = true;
             dgvUsers.Columns["Id"].Visible = false;
         }
+
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {

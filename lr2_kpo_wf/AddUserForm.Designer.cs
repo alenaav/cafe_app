@@ -41,36 +41,36 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(188, 143);
+            txtName.Location = new Point(120, 123);
             txtName.Name = "txtName";
-            txtName.Size = new Size(582, 27);
+            txtName.Size = new Size(503, 27);
             txtName.TabIndex = 0;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(188, 176);
+            txtEmail.Location = new Point(120, 165);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(582, 27);
+            txtEmail.Size = new Size(503, 27);
             txtEmail.TabIndex = 1;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(188, 209);
+            txtPhone.Location = new Point(135, 209);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(582, 27);
+            txtPhone.Size = new Size(488, 27);
             txtPhone.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(188, 242);
+            txtPassword.Location = new Point(101, 246);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(582, 27);
+            txtPassword.Size = new Size(522, 27);
             txtPassword.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(116, 150);
+            label1.Location = new Point(56, 126);
             label1.Name = "label1";
             label1.Size = new Size(39, 20);
             label1.TabIndex = 4;
@@ -79,7 +79,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(109, 183);
+            label2.Location = new Point(49, 168);
             label2.Name = "label2";
             label2.Size = new Size(46, 20);
             label2.TabIndex = 5;
@@ -88,16 +88,17 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(55, 212);
+            label3.Location = new Point(2, 212);
             label3.Name = "label3";
             label3.Size = new Size(127, 20);
             label3.TabIndex = 6;
-            label3.Text = "Номер телефона";
+            label3.Text = "Номер";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(93, 249);
+            label4.Location = new Point(33, 249);
             label4.Name = "label4";
             label4.Size = new Size(62, 20);
             label4.TabIndex = 7;
@@ -105,9 +106,9 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(470, 372);
+            btnAdd.Location = new Point(227, 290);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(199, 66);
             btnAdd.TabIndex = 8;
             btnAdd.Text = "добавить";
             btnAdd.UseVisualStyleBackColor = true;
@@ -117,7 +118,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(676, 368);
             Controls.Add(btnAdd);
             Controls.Add(label4);
             Controls.Add(label3);
